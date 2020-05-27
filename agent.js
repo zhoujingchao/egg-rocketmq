@@ -12,7 +12,7 @@ module.exports = agent => {
 
 async function initProducer(agent) {
   const config = agent.config.rocketmq;
-  if (!config) return;
+  if (!config && !config.producer) return;
 
   const { options, topicsList } = config.producer;
   for (let i = 0, len = topicsList.length; i < len; i++) {
@@ -44,7 +44,7 @@ async function initProducer(agent) {
 
 async function initConsumer(agent) {
   const config = agent.config.rocketmq;
-  if (!config) return;
+  if (!config && config.consumer) return;
 
   const { options, topicsList } = config.consumer;
   for (let i = 0, len = topicsList.length; i < len; i++) {
